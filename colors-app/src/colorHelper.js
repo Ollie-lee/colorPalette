@@ -29,7 +29,7 @@ import chroma, { scale } from 'chroma-js'
 
 let levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
 
-function generate(startPalette) {
+function generatePalette(startPalette) {
   let newPalette = {
     paletteName: startPalette.paletteName,
     id: startPalette.id,
@@ -39,35 +39,51 @@ function generate(startPalette) {
   for (let level of levels) {
     // colors: {50:[{},{},{}],100:[{},{},{}],200:[{},{},{}]}
     newPalette.colors[level] = []
+  }
 
-    for (let color of startPalette.colors) {
-      //an array of ten gradient color names
-      let scale = generateScale(color.color, 10).reverse();
-      //i is index
-      for (let i in scale) {
-        newPalette.colors[level][i].push({
-          name: `{color.name} ${levels[i]}`
-        })
-      }
+  for (let color of startPalette.colors) {
+    //an array of ten gradient color names
+    let scale = generateScale(color.color, 10).reverse();
+    //i is index
+    for (let i in scale) {
+      /**
+       * colors:{
+       * 50:[],
+       * 100:[],
+       * ...
+       * }
+       */
+      newPalette.colors[levels[i]].push({
+        name: `${color.name} ${levels[i]}`,
+        id: color.name.toLowerCase().replace(/ /g, "-"),
+        hex: scale[i],
+        // return rgb value
+        rgb: chroma(scale[i]).css(),
+        rgba: chroma(scale[i]).css().replace("rgb", "rgba").replace(')', ',1.0)')
+      })
     }
   }
+
+  return newPalette
 }
 
 function getRange(hexColor) {
   const end = "#fff";
-  return [
-    chroma(hexColor).darken(1.4),//initial colors
+  return ([
+    chroma(hexColor).darken(1.4).hex(),//initial colors
     hexColor,
     end
-  ];
+  ]);
   // hexColor.darken(1.4)-color-white
 }
 
 function generateScale(hexColor, numberOfColors) {
   // scale()scale that we generated which is not an array of numbers yet.
-  chroma
+  return (chroma
     .scale(getRange(hexColor))
     .mode('lab')
-    .colors(numberOfColors)
+    .colors(numberOfColors))
   //generate 10 colors
-}       
+}
+
+export { generatePalette }
