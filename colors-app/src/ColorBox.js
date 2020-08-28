@@ -29,7 +29,7 @@ export default class ColorBox extends Component {
                     <CopyToClipboard text={name} onCopy={this.changeCopyState}>
                         <button className='copy-button'>
                             Copy
-                    </button>
+                        </button>
                     </CopyToClipboard>
                 </div>
                 <span className='see-more'>More</span>
