@@ -15,9 +15,9 @@ const styles = {
   },
   colors: {
     backgroundColor: '#dae1e4',
-    height:'150px',
-    width:'100%',
-    borderRadius:'5px',
+    height: '150px',
+    width: '100%',
+    borderRadius: '5px',
     overflow: 'hidden'
   },
   title: {
@@ -53,11 +53,14 @@ function Minipalette(props) {
     return <div className={classes.miniColor}
       style={{ backgroundColor: color.color }}
       key={color.name}
+
     ></div>
   })
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root}
+      onClick={props.goToPalette}
+    >
       <div className={classes.colors}>
         {/* mini color boxes */}
         {miniColorBoxes}
