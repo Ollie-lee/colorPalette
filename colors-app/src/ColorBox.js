@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 
 
 export default class ColorBox extends Component {
-
+    static defaultProps = {
+        showLink: true
+    }
     state = { copied: false }
 
     changeCopyState = () => {
@@ -14,7 +16,8 @@ export default class ColorBox extends Component {
         })
     }
     render() {
-        const { name, background } = this.props
+        const { name, background, paletteId,
+            id, showLink } = this.props
         const { copied } = this.state;
         return (
             <div style={{ background }} className='ColorBox' >
@@ -33,10 +36,11 @@ export default class ColorBox extends Component {
                         </button>
                     </CopyToClipboard>
                 </div>
+
                 {/* prevent trigger this.changeCopyState */}
-                <Link to='/' onClick={(e) => e.stopPropagation()}>
+                {showLink && (<Link to={`/palette/${paletteId}/${id}`} onClick={(e) => e.stopPropagation()}>
                     <span className='see-more'>More</span>
-                </Link>
+                </Link>)}
             </div >
         )
     }
