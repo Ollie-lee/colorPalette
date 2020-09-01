@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ColorBox from './ColorBox'
 import Navbar from './Navbar'
 import './Palette.css'
+import PaletteFooter from './PaletteFooter'
 export class Palette extends Component {
     state = { level: 500, format: 'hex' }
     changeLevel = (newLevel) => {
@@ -33,10 +34,10 @@ export class Palette extends Component {
                     {colorBoxes}
                 </div>
                 {/* footer eventually */}
-                <footer className='Palette-footer'>
-                    {paletteName}
-                    <span className='emoji'>{emoji}</span>
-                </footer>
+                <PaletteFooter
+                    paletteName={paletteName}
+                    emoji={emoji}
+                />
             </div>
         )
     }

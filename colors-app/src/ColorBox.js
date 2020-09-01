@@ -30,7 +30,7 @@ export default class ColorBox extends Component {
                     <div className='box-content'>
                         <span>{name}</span>
                     </div>
-                    <CopyToClipboard text={name} onCopy={this.changeCopyState}>
+                    <CopyToClipboard text={background} onCopy={this.changeCopyState}>
                         <button className='copy-button'>
                             Copy
                         </button>
