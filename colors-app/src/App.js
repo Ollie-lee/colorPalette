@@ -5,6 +5,7 @@ import seedColors from './seedColors'
 import PaletteList from './PaletteList'
 import SingleColorPalette from './SingleColorPalette'
 import './App.css'
+import NewPaletteForm from './NewPaletteForm'
 import { generatePalette } from "./colorHelper";
 
 
@@ -21,6 +22,11 @@ function App() {
         palettes={seedColors}
         {...routeProps}
       />} />
+
+      <Route exact
+        path='/palette/new'
+        render={() => <NewPaletteForm />} />
+
       <Route
         exact
         path='/palette/:id'

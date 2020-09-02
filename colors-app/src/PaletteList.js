@@ -23,13 +23,14 @@ class PaletteList extends Component {
           <nav className={classes.nav}>
             {/* header */}
             <h1>React Colors</h1>
+            <Link to='/palette/new'>Create palette</Link>
           </nav>
           <div className={classes.palettes}>
             {/* bunch of palettes */}
             {palettes.map(palette =>
               <Minipalette {...palette}
                 goToPalette={() => this.goToPalette(palette.id)}
-                // onClick={() => this.props.history.push(`/palette/${palette.id}`)}
+              // onClick={() => this.props.history.push(`/palette/${palette.id}`)}
               />
             )}
           </div>
