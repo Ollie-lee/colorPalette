@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { ChromePicker, SketchPicker } from 'react-color';
 import { Button } from '@material-ui/core';
+import DraggableColorBox from './DraggableColorBox'
 
 
 
@@ -64,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    height: "calc(100vh - 64px)",
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -180,11 +182,16 @@ export default function NewPaletteForm() {
         >Add color</Button>
       </Drawer>
       <main
+        //conditionally add classes.contentShift if open is true
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >
         <div className={classes.drawerHeader} />
+
+        {colors.map(color => (
+          <DraggableColorBox color={color} />
+        ))}
 
       </main>
     </div>
