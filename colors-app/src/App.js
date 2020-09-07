@@ -35,6 +35,7 @@ function App() {
         path='/palette/new'
         render={(routeProps) => <NewPaletteForm
           savePalette={savePalette}
+          palettes={palettes}
           {...routeProps}
         />}
       />
