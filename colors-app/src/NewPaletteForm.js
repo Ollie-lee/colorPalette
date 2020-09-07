@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
 
   const classes = useStyles();
   const theme = useTheme();
@@ -141,6 +141,17 @@ export default function NewPaletteForm() {
     );
   };
 
+  const handleSubmit = () => {
+    let newName = "New Test Palette";
+    const newPalette = {
+      paletteName: newName,
+      colors: colors,
+      id: newName.toLowerCase().replace(/ /g, "-"),
+    }
+    props.savePalette(newPalette);
+    //redirect to homepage
+    props.history.push('/')
+  }
 
   return (
     <div className={classes.root}>
@@ -150,6 +161,7 @@ export default function NewPaletteForm() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        color='default'
       >
         <Toolbar>
           <IconButton
@@ -164,6 +176,13 @@ export default function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={handleSubmit}
+          >
+            Save Palette
+          </Button >
         </Toolbar>
       </AppBar>
       <Drawer

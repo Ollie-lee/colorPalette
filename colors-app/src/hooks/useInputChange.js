@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 export const useInputChange = () => {
+  //state = {input.name : input.value, input.name : input.value}
   const [input, setInput] = useState({})
 
   const handleInputChange = (e) => setInput({
