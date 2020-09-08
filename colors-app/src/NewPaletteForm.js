@@ -120,6 +120,11 @@ export default function NewPaletteForm(props) {
     setColors([...colors, newColor])
   }
 
+  const deleteColorBox = (clickedColorName) => {
+    const newColors = colors.filter(color => color.name !== clickedColorName)
+    setColors(newColors);
+  }
+
   const ColorPicker = () => {
 
 
@@ -258,8 +263,10 @@ export default function NewPaletteForm(props) {
 
         {colors.map(color => (
           <DraggableColorBox
+            key={color.name}
             color={color.color}
             name={color.name}
+            deleteColorBox={() => deleteColorBox(color.name)}
           />
         ))}
 
