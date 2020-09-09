@@ -16,7 +16,8 @@ import DraggableColorBox from './DraggableColorBox'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { useInputChange } from './hooks/useInputChange'
 import DraggableColorList from './DraggableColorList'
-import {arrayMove} from 'react-sortable-hoc';
+import { arrayMove } from 'react-sortable-hoc';
+import { Link } from 'react-router-dom'
 
 
 const drawerWidth = 400;
@@ -79,12 +80,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewPaletteForm(props) {
+NewPaletteForm.defaultProps = {
+  maxColors: 20
+}
 
+export default function NewPaletteForm(props) {
+  const { maxColors } = props
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [colors, setColors] = useState([{ color: 'blue', name: 'blue' }])
+  const [colors, setColors] = useState(props.palettes[0].colors)
   const [currentColor, setCurrentColor] = useState("teal");
   //customized hook, control input
   // initial value of input is an empty object
@@ -163,9 +168,15 @@ export default function NewPaletteForm(props) {
     props.history.push('/')
   }
 
+  const handleRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * props.palettes[0].colors.length)
+    setColors([...colors, props.palettes[0].colors[randomIndex]])
+  }
+
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };
+
 
   return (
     <div className={classes.root}>
@@ -206,6 +217,14 @@ export default function NewPaletteForm(props) {
             >
               Save Palette
           </Button >
+            <Link
+              to='/'
+            >
+              <Button
+                variant='contained'
+                color='secondary'
+              >Go Back</Button>
+            </Link>
           </ValidatorForm>
         </Toolbar>
       </AppBar>
@@ -229,10 +248,19 @@ export default function NewPaletteForm(props) {
           Design you palette!
         </Typography>
         <div>
-          <Button variant='contained' color='secondary'>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={() => setColors([])}
+          >
             Clear Palette
           </Button>
-          <Button variant='contained' color='primary'>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={handleRandomColor}
+            disabled={colors.length >= maxColors}
+          >
             random Color
             </Button>
         </div>
@@ -250,10 +278,15 @@ export default function NewPaletteForm(props) {
           <Button
             variant='contained'
             color='primary'
-            style={{ backgroundColor: currentColor }}
+            style={{
+              backgroundColor: colors.length >= maxColors
+                ? 'grey'
+                : currentColor
+            }}
             type={"submit"}
+            disabled={colors.length >= maxColors}
           >
-            Add color
+            {colors.length >= maxColors ? 'Palette is full' : 'Add color'}
           </Button>
         </ValidatorForm>
 
