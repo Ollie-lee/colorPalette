@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { useInputChange } from './hooks/useInputChange'
-import DraggableColorList from './DraggableColorList'
-import { arrayMove } from 'react-sortable-hoc';
-import PaletteFormNav from './PaletteFormNav'
+
 
 export default function ColorPickerForm(props) {
   const {

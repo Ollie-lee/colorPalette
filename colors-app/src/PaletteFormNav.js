@@ -9,10 +9,43 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+
+const drawerWidth = 400;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  toolBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: '64px'
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  navBtns: {
+
+  }
+}));
 
 export default function PaletteFormNav(props) {
-
-  const { classes,
+  const classes = useStyles();
+  const {
     open,
     handleDrawerOpen,
     handleInputChange,
@@ -20,7 +53,7 @@ export default function PaletteFormNav(props) {
     input
   } = props
   return (
-    <>
+    <React.Fragment className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -29,7 +62,9 @@ export default function PaletteFormNav(props) {
         })}
         color='default'
       >
-        <Toolbar>
+        <Toolbar
+          className={classes.toolBar}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -40,24 +75,29 @@ export default function PaletteFormNav(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Create a Palette
           </Typography>
-          <ValidatorForm onSubmit={handleSubmit}>
-            <TextValidator
-              value={input["newPaletteName"]}
-              onChange={handleInputChange}
-              name='newPaletteName'
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={['Please enter the palette name~', 'Palette name needs to be unique~']}
-              label='Palette Name'
-            />
-            <Button
-              variant='contained'
-              color='primary'
-              type='submit'
-            >
-              Save Palette
+
+          <div
+            className={classes.navBtns}
+          >
+            <ValidatorForm onSubmit={handleSubmit}>
+              <TextValidator
+                value={input["newPaletteName"]}
+                onChange={handleInputChange}
+                name='newPaletteName'
+                validators={['required', 'isPaletteNameUnique']}
+                errorMessages={['Please enter the palette name~', 'Palette name needs to be unique~']}
+                label='Palette Name'
+              />
+              <Button
+                variant='contained'
+                color='primary'
+                type='submit'
+              >
+                Save Palette
           </Button >
+            </ValidatorForm>
             <Link
               to='/'
             >
@@ -66,10 +106,11 @@ export default function PaletteFormNav(props) {
                 color='secondary'
               >Go Back</Button>
             </Link>
-          </ValidatorForm>
+          </div>
+
         </Toolbar>
       </AppBar>
 
-    </>
+    </React.Fragment >
   )
 }
