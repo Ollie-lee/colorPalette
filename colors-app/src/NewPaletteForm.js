@@ -2,22 +2,17 @@ import React, { useEffect, useState } from 'react'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { ChromePicker, SketchPicker } from 'react-color';
+import { ChromePicker} from 'react-color';
 import { Button } from '@material-ui/core';
-import DraggableColorBox from './DraggableColorBox'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { useInputChange } from './hooks/useInputChange'
 import DraggableColorList from './DraggableColorList'
 import { arrayMove } from 'react-sortable-hoc';
-import { Link } from 'react-router-dom'
+import PaletteFormNav from './PaletteFormNav'
 
 
 const drawerWidth = 400;
@@ -180,54 +175,14 @@ export default function NewPaletteForm(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-        color='default'
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-          <ValidatorForm onSubmit={handleSubmit}>
-            <TextValidator
-              value={input["newPaletteName"]}
-              onChange={handleInputChange}
-              name='newPaletteName'
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={['Please enter the palette name~', 'Palette name needs to be unique~']}
-              label='Palette Name'
-            />
-            <Button
-              variant='contained'
-              color='primary'
-              type='submit'
-            >
-              Save Palette
-          </Button >
-            <Link
-              to='/'
-            >
-              <Button
-                variant='contained'
-                color='secondary'
-              >Go Back</Button>
-            </Link>
-          </ValidatorForm>
-        </Toolbar>
-      </AppBar>
+      <PaletteFormNav
+        classes={classes}
+        open={open}
+        handleDrawerOpen={handleDrawerOpen}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        input={input}
+      />
       <Drawer
         className={classes.drawer}
         variant="persistent"
