@@ -6,13 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { ChromePicker} from 'react-color';
+import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { useInputChange } from './hooks/useInputChange'
 import DraggableColorList from './DraggableColorList'
 import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from './PaletteFormNav'
+import ColorPickerForm from './ColorPickerForm'
 
 
 const drawerWidth = 400;
@@ -128,17 +129,12 @@ export default function NewPaletteForm(props) {
   }
 
   const ColorPicker = () => {
-
-
     const handleColorChange = (color) => {
       setCurrentColor(color.hex)
     };
 
     const handleSmoothChange = (color) => {
-
     }
-
-
 
     return (
       <div className="color-picker">
@@ -219,33 +215,15 @@ export default function NewPaletteForm(props) {
             random Color
             </Button>
         </div>
-        <ColorPicker />
-
-        <ValidatorForm onSubmit={addNewColor}>
-          <TextValidator
-            value={input["newColorName"]}
-            onChange={handleInputChange}
-            name='newColorName'
-            validators={['required', 'isColorNameUnique', 'isColorUnique']}
-            errorMessages={['this field is required', 'same color name existed', 'same color already used']}
-          />
-
-          <Button
-            variant='contained'
-            color='primary'
-            style={{
-              backgroundColor: colors.length >= maxColors
-                ? 'grey'
-                : currentColor
-            }}
-            type={"submit"}
-            disabled={colors.length >= maxColors}
-          >
-            {colors.length >= maxColors ? 'Palette is full' : 'Add color'}
-          </Button>
-        </ValidatorForm>
-
-
+        <ColorPickerForm
+          ColorPicker={ColorPicker}
+          addNewColor={addNewColor}
+          input={input}
+          handleInputChange={handleInputChange}
+          colors={colors}
+          maxColors={maxColors}
+          currentColor={currentColor}
+        />
       </Drawer>
       <main
         //conditionally add classes.contentShift if open is true
