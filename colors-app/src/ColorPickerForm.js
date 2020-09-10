@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%'
+  },
+  addColor: {
+    width: '100%',
+    padding: '.5rem 1rem',
+    marginTop: '1rem',
+    fontSize: '1.5rem'
+  },
+  colorNameInput: {
+    width: '100%',
+    height: '70px',
+  }
+}));
 
 export default function ColorPickerForm(props) {
+  const classes = useStyles();
   const {
     ColorPicker,
     addNewColor,
@@ -11,11 +27,12 @@ export default function ColorPickerForm(props) {
     handleInputChange,
     colors,
     maxColors,
-    currentColor
+    currentColor,
+
   } = props
 
   return (
-    <>
+    <div className={classes.root}>
       <ColorPicker />
 
       <ValidatorForm onSubmit={addNewColor}>
@@ -25,6 +42,10 @@ export default function ColorPickerForm(props) {
           name='newColorName'
           validators={['required', 'isColorNameUnique', 'isColorUnique']}
           errorMessages={['this field is required', 'same color name existed', 'same color already used']}
+          className={classes.colorNameInput}
+          variant='filled'
+          margin='normal'
+          placeholder='Color Name'
         />
 
         <Button
@@ -37,12 +58,13 @@ export default function ColorPickerForm(props) {
           }}
           type={"submit"}
           disabled={colors.length >= maxColors}
+          className={classes.addColor}
         >
           {colors.length >= maxColors ? 'Palette is full' : 'Add color'}
         </Button>
       </ValidatorForm>
 
 
-    </>
+    </div>
   )
 }

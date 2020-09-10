@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -31,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: 'flex',
+    alignItems: "center"
   },
   drawerHeader: {
     display: 'flex',
@@ -57,6 +59,23 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  container: {
+    height: '100%',
+    width: '90%',
+    display: 'flex',
+    flexDirection: "column",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttons: {
+    width: '100%',
+  },
+  button: {
+    width: '50%',
+  },
+  picker: {
+    marginTop: '2rem'
+  }
 }));
 
 NewPaletteForm.defaultProps = {
@@ -66,7 +85,6 @@ NewPaletteForm.defaultProps = {
 export default function NewPaletteForm(props) {
   const { maxColors } = props
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [colors, setColors] = useState(props.palettes[0].colors)
   const [currentColor, setCurrentColor] = useState("teal");
@@ -125,6 +143,8 @@ export default function NewPaletteForm(props) {
           color={currentColor}
           onChangeComplete={handleColorChange}
           onChange={handleSmoothChange}
+          className={classes.picker}
+          width='100%'
         />
       </div>
     );
@@ -175,37 +195,40 @@ export default function NewPaletteForm(props) {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-
         <Divider />
-        <Typography variant='h4'>
-          Design you palette!
-        </Typography>
-        <div>
-          <Button
-            variant='contained'
-            color='secondary'
-            onClick={() => setColors([])}
-          >
-            Clear Palette
-          </Button>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={handleRandomColor}
-            disabled={colors.length >= maxColors}
-          >
-            random Color
+        <div className={classes.container}>
+          <Typography variant='h4' gutterBottom >
+            Design you palette!
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={() => setColors([])}
+              className={classes.button}
+            >
+              Clear Palette
             </Button>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={handleRandomColor}
+              disabled={colors.length >= maxColors}
+              className={classes.button}
+            >
+              random Color
+            </Button>
+          </div>
+          <ColorPickerForm
+            ColorPicker={ColorPicker}
+            addNewColor={addNewColor}
+            input={input}
+            handleInputChange={handleInputChange}
+            colors={colors}
+            maxColors={maxColors}
+            currentColor={currentColor}
+          />
         </div>
-        <ColorPickerForm
-          ColorPicker={ColorPicker}
-          addNewColor={addNewColor}
-          input={input}
-          handleInputChange={handleInputChange}
-          colors={colors}
-          maxColors={maxColors}
-          currentColor={currentColor}
-        />
       </Drawer>
       <main
         //conditionally add classes.contentShift if open is true
