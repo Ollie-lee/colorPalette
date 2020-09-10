@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   toolBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: '64px'
+    height: '64px',
+    alignItems: 'center',
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -41,11 +42,18 @@ const useStyles = makeStyles((theme) => ({
   },
   navBtns: {
 
+  },
+  button: {
+    margin: '0 .5rem',
+  },
+  link: {
+    textDecoration: 'none'
   }
 }));
 
 export default function PaletteFormNav(props) {
   const classes = useStyles();
+  const [formShowing, setFormShowing] = useState(false)
   const {
     open,
     handleDrawerOpen,
@@ -53,6 +61,10 @@ export default function PaletteFormNav(props) {
     handleSubmit,
     input
   } = props
+
+  const showForm = () => {
+    setFormShowing(true)
+  }
   return (
     <React.Fragment className={classes.root}>
       <CssBaseline />
@@ -82,25 +94,30 @@ export default function PaletteFormNav(props) {
           <div
             className={classes.navBtns}
           >
-
-            <PaletteMetaForm
-              handleSubmit={handleSubmit}
-              handleInputChange={handleInputChange}
-              input={input}
-            />
             <Link
               to='/'
+              className={classes.link}
             >
               <Button
                 variant='contained'
                 color='secondary'
+                className={classes.button}
+
               >Go Back</Button>
             </Link>
+            <Button variant="contained" color="primary" onClick={showForm} className={classes.button}>
+              Save
+            </Button>
           </div>
 
         </Toolbar>
       </AppBar>
-
+      {formShowing && <PaletteMetaForm
+        handleSubmit={handleSubmit}
+        handleInputChange={handleInputChange}
+        input={input}
+        setFormShowing={setFormShowing}
+      />}
     </React.Fragment >
   )
 }
