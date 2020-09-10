@@ -14,7 +14,7 @@ import DraggableColorList from './DraggableColorList'
 import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from './PaletteFormNav'
 import ColorPickerForm from './ColorPickerForm'
-
+// import useStyles from './styles/NewPaletteFormStyle'
 
 const drawerWidth = 400;
 
@@ -150,12 +150,13 @@ export default function NewPaletteForm(props) {
     );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (emoji) => {
     let newName = input["newPaletteName"];
     const newPalette = {
       paletteName: newName,
       colors: colors,
       id: newName.toLowerCase().replace(/ /g, "-"),
+      emoji: emoji
     }
     props.savePalette(newPalette);
     //redirect to homepage
