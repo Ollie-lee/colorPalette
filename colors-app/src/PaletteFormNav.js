@@ -48,7 +48,9 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none'
-  }
+  }, hide: {
+    display: 'none',
+  },
 }));
 
 export default function PaletteFormNav(props) {

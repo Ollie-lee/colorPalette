@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  hide: {
-    display: 'none',
-  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -41,10 +38,12 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+    alignSelf:'flex-end',
+    marginBottom: '2rem'
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: 0,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

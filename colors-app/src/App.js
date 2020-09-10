@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
 import Palette from './Palette'
 import seedColors from './seedColors'
@@ -10,8 +10,9 @@ import { generatePalette } from "./colorHelper";
 
 
 function App() {
+  const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'))
 
-  const [palettes, setPalettes] = useState(seedColors)
+  const [palettes, setPalettes] = useState(savedPalettes || seedColors)
 
   const findPalette = (id) => {
     return palettes.find((palette) => {
@@ -21,8 +22,14 @@ function App() {
   }
 
   const savePalette = (newPalette) => {
+    //setPalettes is still async
     setPalettes([...palettes, newPalette]);
   }
+
+  useEffect(() => {
+    window.localStorage.setItem("palettes", JSON.stringify(palettes))
+  }, [palettes])
+
 
   return (
     <Switch>
