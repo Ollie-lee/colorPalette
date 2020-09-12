@@ -16,6 +16,7 @@ const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -28,6 +29,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     height: '64px',
     alignItems: 'center',
+    "@media only screen and (max-width: 900px)": {
+      // display: 'flex',
+      // flexDirection: "column",
+      height: 'auto',
+      // justifyContent: 'space-around',
+      // padding: '.5rem 0',
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -39,12 +50,22 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    "@media only screen and (max-width: 900px)": {
+      alignSelf: 'flex-start',
+    },
   },
   navBtns: {
-
+    "@media only screen and (max-width: 900px)": {
+      flexBasis: '0 0 100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
   button: {
     margin: '0 .5rem',
+
   },
   link: {
     textDecoration: 'none'

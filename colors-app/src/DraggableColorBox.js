@@ -20,7 +20,19 @@ const styles = {
     "& svg": {
       transition: 'all 0.2s ease-in-out'
 
-    }
+    },
+    "@media only screen and (max-width: 900px)":{
+      width: '25%',
+      height: '20%'
+    },
+    "@media only screen and (max-width: 700px)":{
+      width: '50%',
+      height: '10%'
+    },
+    "@media only screen and (max-width: 500px)":{
+      width: '100%',
+      height: '5%'
+    },
   },
   boxContent: {
     position: 'absolute',

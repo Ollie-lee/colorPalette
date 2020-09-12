@@ -74,7 +74,8 @@ const useStyles = makeStyles((theme) => ({
   },
   picker: {
     marginTop: '2rem'
-  }
+  },
+
 }));
 
 NewPaletteForm.defaultProps = {
@@ -242,6 +243,7 @@ export default function NewPaletteForm(props) {
           deleteColorBox={deleteColorBox}
           axis='xy'
           onSortEnd={onSortEnd}
+          className={classes.DraggableColorList}
         />
 
 

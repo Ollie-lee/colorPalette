@@ -1,19 +1,40 @@
 .Navbar {
+  padding: 0.5rem 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 6vh;
+}
+
+@media only screen and (max-width: 900px) {
+  .Navbar {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .select-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .logo {
   margin-right: 15px;
-  padding: 0 13px;
+  padding: 6px 13px;
   font-size: 22px;
   background-color: #eceff1;
   font-family: "Roboto", sans-serif;
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+  .logo {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .logo a {
@@ -25,7 +46,12 @@
   width: 340px;
   margin: 0 10px;
   display: inline-block;
+}
 
+@media only screen and (max-width: 900px) {
+  .slider {
+    width: 150px;
+  }
 }
 
 .rc-slider-track {
@@ -50,7 +76,7 @@
   margin-top: -2px;
 }
 
-.select-container{
+.select-container {
   margin-left: auto;
   margin-right: 2rem;
 }
