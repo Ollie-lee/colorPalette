@@ -1,10 +1,16 @@
+import bg from './bg.svg'
 export default {
   root: {
-    backgroundColor: " blue",
     height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    backgroundColor: '#ff0000',
+    backgroundImage: `url(${bg})`,
+    overflow: 'scroll',
+    "h1":{
+      fontSize: "2rem"
+    }
   },
   container: {
     width: '75%',
@@ -12,15 +18,18 @@ export default {
     alignItems: 'flex-start',
     flexDirection: 'column',
     flexWrap: 'wrap',
+    "@media only screen and (max-width: 700px)": {
+      width: '90%'
+    },
   },
   nav: {
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',
     color: 'white',
-    alignItems:'center',
-    "& a":{
-      color:'white'
+    alignItems: 'center',
+    "& a": {
+      color: 'white'
     }
   },
   palettes: {
@@ -29,5 +38,12 @@ export default {
     display: 'grid',
     gridTemplateColumns: 'repeat(3,30%)',
     gridGap: '5%',
+    "@media only screen and (max-width: 700px)": {
+      gridTemplateColumns: 'repeat(2,50%)',
+    },
+    "@media only screen and (max-width: 500px)": {
+      gridTemplateColumns: 'repeat(1,100%)',
+      gridGap: '2%',
+    },
   }
 }
