@@ -30,11 +30,16 @@ function App() {
     window.localStorage.setItem("palettes", JSON.stringify(palettes))
   }, [palettes])
 
+  const deletePalette = (id) => {
+    const newPalettes = palettes.filter((palette) => palette.id !== id)
+    setPalettes(newPalettes)
+  }
 
   return (
     <Switch>
       <Route exact path='/' render={(routeProps) => <PaletteList
         palettes={palettes}
+        deletePalette={deletePalette}
         {...routeProps}
       />} />
 
