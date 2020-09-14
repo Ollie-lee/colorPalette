@@ -76,8 +76,7 @@ class PaletteList extends Component {
                   key={palette.id}
                   openDialog={this.openDialog}
                   updateSelectedId={this.updateSelectedId}
-                // onClick={() => this.updateSelectedId(palette.id)}
-                // onClick={() => this.props.history.push(`/palette/${palette.id}`)}
+                  // onClick={() => this.updateSelectedId(palette.id)}
                 />
               </CSSTransition>
             )}
