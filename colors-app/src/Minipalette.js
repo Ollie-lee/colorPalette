@@ -9,7 +9,9 @@ function Minipalette(props) {
     emoji,
     colors,
     deletePalette,
-    id
+    id,
+    openDialog,
+    updateSelectedId
   } = props
   const miniColorBoxes = colors.map((color) => {
     return <div className={classes.miniColor}
@@ -21,7 +23,9 @@ function Minipalette(props) {
 
   const handleDeletePalette = (e) => {
     e.stopPropagation();
-    deletePalette(id);
+    // deletePalette(id);
+    updateSelectedId(id)
+    openDialog()
   }
 
   return (

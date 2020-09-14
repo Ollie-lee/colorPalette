@@ -19,7 +19,6 @@ export default function PaletteMetaForm(props) {
   const [stage, setStage] = React.useState('form');
 
   const savePalette = (emoji) => {
-    console.log("savePalette -> emoji", emoji)
     handleSubmit(emoji.native)
   }
 
