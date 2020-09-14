@@ -244,6 +244,7 @@ export default function NewPaletteForm(props) {
           axis='xy'
           onSortEnd={onSortEnd}
           className={classes.DraggableColorList}
+          distance={2}
         />
 
 
