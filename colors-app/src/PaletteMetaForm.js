@@ -20,6 +20,7 @@ export default function PaletteMetaForm(props) {
 
   const savePalette = (emoji) => {
     handleSubmit(emoji.native)
+    setStage('')
   }
 
   const handleClose = () => {
@@ -58,6 +59,7 @@ export default function PaletteMetaForm(props) {
               label='Palette Name'
               fullWidth
               margin='normal'
+              autoFocus
             />
           </DialogContent>
           <DialogActions>
