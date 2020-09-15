@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'rc-slider/assets/index.css';
-import './Navbar.css'
+import './styles/Navbar.css'
 import Slider, { Range } from 'rc-slider';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';

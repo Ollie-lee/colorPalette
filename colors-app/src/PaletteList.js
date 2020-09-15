@@ -71,12 +71,12 @@ class PaletteList extends Component {
                 timeout={500}
               >
                 <Minipalette {...palette}
-                  goToPalette={() => this.goToPalette(palette.id)}
+                  goToPalette={this.goToPalette}
                   deletePalette={deletePalette}
                   key={palette.id}
                   openDialog={this.openDialog}
                   updateSelectedId={this.updateSelectedId}
-                  // onClick={() => this.updateSelectedId(palette.id)}
+                // onClick={() => this.updateSelectedId(palette.id)}
                 />
               </CSSTransition>
             )}

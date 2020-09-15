@@ -4,7 +4,7 @@ import Palette from './Palette'
 import seedColors from './seedColors'
 import PaletteList from './PaletteList'
 import SingleColorPalette from './SingleColorPalette'
-import './App.css'
+import './styles/App.css'
 import NewPaletteForm from './NewPaletteForm'
 import { generatePalette } from "./colorHelper";
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
