@@ -14,7 +14,7 @@ import DraggableColorList from './DraggableColorList'
 import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from './PaletteFormNav'
 import ColorPickerForm from './ColorPickerForm'
-// import useStyles from './styles/NewPaletteFormStyle'
+import seedColors from './seedColors'
 
 const drawerWidth = 400;
 
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
-    alignSelf:'flex-end',
+    alignSelf: 'flex-end',
     marginBottom: '2rem'
   },
   content: {
@@ -86,7 +86,7 @@ export default function NewPaletteForm(props) {
   const { maxColors } = props
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [colors, setColors] = useState(props.palettes[0].colors)
+  const [colors, setColors] = useState(seedColors[0].colors)
   const [currentColor, setCurrentColor] = useState("teal");
   //customized hook, control input
   // initial value of input is an empty object

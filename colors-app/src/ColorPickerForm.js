@@ -35,7 +35,10 @@ export default function ColorPickerForm(props) {
     <div className={classes.root}>
       <ColorPicker />
 
-      <ValidatorForm onSubmit={addNewColor}>
+      <ValidatorForm 
+      onSubmit={addNewColor}
+      instantValidate={false}
+      >
         <TextValidator
           value={input["newColorName"]}
           onChange={handleInputChange}
