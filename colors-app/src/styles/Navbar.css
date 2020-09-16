@@ -22,7 +22,7 @@
 
 .logo {
   margin-right: 15px;
-  padding: 6px 13px;
+  padding: 3px 6px;
   font-size: 22px;
   background-color: rgba(0, 0, 0, 0.8);
   font-family: "Roboto", sans-serif;
@@ -66,6 +66,8 @@
 .logo a {
   text-decoration: none;
   color: white;
+  width: 100%;
+  line-height: 100%;
 }
 
 .slider {
