@@ -24,11 +24,37 @@
   margin-right: 15px;
   padding: 6px 13px;
   font-size: 22px;
-  background-color: #eceff1;
+  background-color: rgba(0, 0, 0, 0.8);
   font-family: "Roboto", sans-serif;
   height: 100%;
   display: flex;
   align-items: center;
+  border-radius: 10px;
+  margin-left: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.logo::after {
+  content: "";
+  display: block;
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0),
+    rgba(255, 255, 255, 0.3),
+    rgba(0, 0, 0, 0)
+  );
+  left: 0;
+  top: 0;
+  transform: rotate(-45deg) translate(0, -150%);
+}
+
+.logo:hover::after {
+  transition: 0.5s ease-in-out;
+  transform: rotate(-45deg) translate(0, 150%);
 }
 
 @media only screen and (max-width: 900px) {
@@ -39,7 +65,7 @@
 
 .logo a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .slider {
