@@ -92,6 +92,7 @@ export default function NewPaletteForm(props) {
   // initial value of input is an empty object
   //which includes different input's data
   const [input, handleInputChange, resetInputChange] = useInputChange()
+  const allColors = seedColors.map(palette => palette.colors).flat()
 
   useEffect(() => {
     //add customized validator
@@ -164,8 +165,25 @@ export default function NewPaletteForm(props) {
   }
 
   const handleRandomColor = () => {
-    const randomIndex = Math.floor(Math.random() * props.palettes[0].colors.length)
-    setColors([...colors, props.palettes[0].colors[randomIndex]])
+    // let randomIndex = Math.floor(Math.random() * allColors.length);
+    let randomIndex;
+    let duplicateColor = true
+
+    const checkDuplicateColor = (randomIndex) => {
+      return colors.some(color => color.name === allColors[randomIndex].name)
+    }
+
+    while (duplicateColor) {
+      // if (colors.some(color => color.name === allColors[randomIndex].name)) {
+      //   randomIndex = Math.floor(Math.random() * allColors.length)
+      // } else {
+      //   //no duplicate color
+      //   duplicateColor = false
+      // }
+      randomIndex = Math.floor(Math.random() * allColors.length)
+      duplicateColor = checkDuplicateColor(randomIndex)
+    }
+    setColors([...colors, allColors[randomIndex]])
   }
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
