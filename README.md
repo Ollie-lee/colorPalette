@@ -49,7 +49,7 @@ This project is inspired by Colt Steele's code boot camp, making a Single Page A
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [React](https://www.mongodb.com/) - Web Framework
+- [React](https://reactjs.org/) - Web Framework
 - [React-router](https://reactrouter.com/core/guides/quick-start) - Client Side Router Library
 - [Material UI](https://material-ui.com/) - UI Library
 - [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc) - Drag & Drop Library
