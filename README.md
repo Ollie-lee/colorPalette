@@ -45,6 +45,8 @@ This project is inspired by Colt Steele's code boot camp, making a Single Page A
 
 <img src='./colors-app/config/preview5.png' alt='preview5'/>
 
+<img src='./colors-app/config/preview7.png' alt='preview7'/>
+
 <img src='./colors-app/config/preview6.png' alt='preview6'/>
 
 ## ⛏️ Built Using <a name = "built_using"></a>
@@ -54,6 +56,7 @@ This project is inspired by Colt Steele's code boot camp, making a Single Page A
 - [Material UI](https://material-ui.com/) - UI Library
 - [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc) - Drag & Drop Library
 - [react-material-ui-form-validator ](https://github.com/NewOldMax/react-material-ui-form-validator) - Form Validation Library
+- [react-transition-group](https://github.com/reactjs/react-transition-group) - Animation Library for React
 - JSS - Solution of CSS in JS provided by Material UI
 - Local Storage - Store color palettes temporarily
 - Responsive design provided
